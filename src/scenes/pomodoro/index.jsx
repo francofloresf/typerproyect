@@ -1,74 +1,44 @@
 import React, { useState, useEffect } from 'react';
+import Header from "./header.jsx"
+import "./App.scss";
+import MainPage from "./MainPage";
+import ConfigurePage from "./ConfigurePage";
 
-import Header from "../../components/Header";
-import { Box } from "@mui/material"
 
-
-const PomodoroTimer = () => {
-  const [minutes, setMinutes] = useState(25);
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    let interval = null;
-
-    if (isActive) {
-      interval = setInterval(() => {
-        if (seconds > 0) {
-          setSeconds(seconds - 1);
-        }
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(interval);
-          } else {
-            setMinutes(minutes - 1);
-            setSeconds(59);
-          }
-        }
-      }, 1000);
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, minutes, seconds]);
-
-  const startTimer = () => {
-    if (minutes === 0 && seconds === 0) {
-      setMinutes(25);
-      setSeconds(0);
-    }
-    setIsActive(true);
-  };
-
-  const stopTimer = () => {
-    setIsActive(false);
-  };
-
-  const resetTimer = () => {
-    setMinutes(25);
-    setSeconds(0);
-    setIsActive(false);
-  };
-
-  return (
-    <div className="pomodoro-timer">
-      <div className="timer">
-        {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
-      </div>
-      <div className="buttons">
-        <button onClick={startTimer}>Start</button>
-        <button onClick={stopTimer}>Stop</button>
-        <button onClick={resetTimer}>Reset</button>
-        <Box m="20px">
-          {/*HEADER*/}
-          <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Task To Do" subtitle="Todas tus tareas en un sitio" />
-        </Box>
-      </Box>
-      </div>
-    </div>
-  );
+const App = () => {
+const [isConfigure, setIsConfigure] = useState(false);
+const [pomodoro, setPomodoro] = useState(0);
+const [pomoBreak, setPomoBreak] = useState(0);
+const updateConfigure = (bool) => {
+    setIsConfigure(bool);
 };
+const updatePomodoro = (_pomodoro, _pomoBreak) => {
+    setPomodoro(_pomodoro);
+    setPomoBreak(_pomoBreak);
+};
+//UseEffect to take eye on bool change
+useEffect(() => {
+    setIsConfigure(isConfigure);
+}, [isConfigure]);
+return (
+    <div>
+    <Header/>
+    <div className="app__section">
+    <MainPage
+        updateConfigure={updateConfigure}
+        pomodoro={pomodoro}
+        pomoBreak={pomoBreak}
+    />
+    {isConfigure && (
+        <ConfigurePage
+        updateConfigure={updateConfigure}
+        updatePomodoro={updatePomodoro}
+        />
+    )}
+    </div>
+    </div>
+);
+};
+  
+export default App;
 
-export default PomodoroTimer;
