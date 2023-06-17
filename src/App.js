@@ -14,7 +14,7 @@ import WriteTask from "./scenes/writetask";
 import Pomodoro from "./scenes/pomodoro";
 import Calculator from "./scenes/calculator";
 import FAQ from "./scenes/faqpage";
-
+import PayMetod from "./scenes/paycash/paycash";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -32,13 +32,14 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/form" element={<Form />} />
-              <Route path="task" element={<Tasktodo/>} />
-              <Route path="habits" element={<Habits/>} />
-              <Route path="progress" element={<Progress/>} />
-              <Route path="writetask" element={<WriteTask/>} />
-              <Route path="pomodoro" element={<Pomodoro/>} />
-              <Route path="calculator" element={<Calculator/>} />
-              <Route path="faq" element={<FAQ/>} />
+              <Route path="/task" element={<Tasktodo/>} />
+              <Route path="/habits" element={<Habits/>} />
+              <Route path="/progress" element={<Progress/>} />
+              <Route path="/writetask" element={<WriteTask/>} />
+              <Route path="/pomodoro" element={<Pomodoro/>} />
+              <Route path="/calculator" element={<Calculator/>} />
+              <Route path="/faq" element={<FAQ/>} />
+              <Route path="/paymetod" element={<PayMetod/>} />
             </Routes>
           </main>
         </div>

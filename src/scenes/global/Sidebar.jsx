@@ -15,6 +15,8 @@ import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -206,6 +208,16 @@ const Sidebar = () => {
             >
               Config
             </Typography>
+
+            <Item
+              title="TYPER PREMIUM"
+              to="/paymetod"
+              icon={<WorkspacePremiumIcon/>}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+
             <Item
               title="Profile Settings"
               to="/form"
